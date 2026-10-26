@@ -98,6 +98,7 @@ When the documentation explicitly identifies several endpoints as the same physi
 - **Independence:** Grouped endpoints require no label or entry in `endpoints`. Adding only `endpointGroups` requires no root-association migration.
 - **Virtual endpoints of a single device:** When the manual describes the endpoints as virtual or logical application resources of one physical device (e.g. a siren with a single speaker and light that exposes several sound/notification endpoints), group **all** of its endpoints into one group with `"isMainDevice": true`. This grouping is recommended, not optional — otherwise the virtual endpoints are presented as separate devices.
 - **Cover with a slat endpoint:** A shutter/blind that exposes its up/down position and its slat/lamella tilt as two endpoints is one physical blind — group both with `"isMainDevice": true`.
+- **Flag borderline "one device vs. separate entities" cases for human review.** When the manual calls a device "multiple devices" but its endpoints could be useful as separate entities (an RGBW controller's color channels, a thermostat's internal/external/floor sensor probes, a metered channel's separate switch and meter), do not group or ungroup on your own — surface the device for a human to decide, without leaning either way.
 
 Leave undocumented relationships ungrouped.
 

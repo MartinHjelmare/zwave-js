@@ -264,10 +264,12 @@ Use `endpointGroups` when the device documentation explicitly identifies multipl
 **How to decide, per device:**
 
 1. From the product manual, establish what each endpoint actually is. Re-verify any existing labels against the manual — a prior label can be wrong, and the grouping decision depends on what each endpoint really is.
-2. If the manual presents the endpoints as virtual/logical resources of one physical device (one siren, one light), group all of them as one `isMainDevice` group.
+2. If the manual presents the endpoints as purely logical facets of one indivisible physical part — e.g. a siren whose several tone/notification endpoints are its single speaker — group all of them as one `isMainDevice` group.
 3. Otherwise identify the real physical parts. Group any part that spans two or more endpoints (a clamp's power + energy, a blind's position + slat tilt). A part that is a single endpoint is only labeled, not grouped.
 4. If the device exposes a whole-device total or aggregate endpoint, put it in its own `isMainDevice` group.
 5. Leave genuinely independent parts ungrouped.
+
+**Flag unclear "one device vs. separate entities" calls for human review — do not decide them alone.** A manual sometimes calls a device "multiple devices" while its endpoints are plausibly useful as their own entities: an RGBW controller's color channels, a thermostat's internal/external/floor sensor probes, or a metered channel's separate switch and meter. Consumers may reasonably expect these to stay separate. Step 2 applies only when the endpoints are purely logical facets of one indivisible part; when it is genuinely unclear, surface the device for a human to decide whether to group, without leaning either way.
 
 - **Evidence:** Establish membership from the device's **product manual** — fetch and read the manual PDF, not only the OpenSmartHouse or Z-Wave Alliance product listing. Those listings usually omit the endpoint-architecture explanation (e.g. whether endpoints are virtual resources of one device) that determines grouping. Never infer membership from device classes, matching labels, or adjacent indices.
 - **Property order:** Place `endpointGroups` directly after `endpoints`, in slot 9.
